@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://dwfudb5u3ijls"]
+
+[ext_resource type="Script" uid="uid://4hj3i6ydvi5m" path="res://Levels/level_base.gd" id="1_exesn"]
+[ext_resource type="TileSet" uid="uid://dhxw3f8l2saqn" path="res://assets/tilesets/tiles_world.tres" id="1_o7a6f"]
+[ext_resource type="Texture2D" uid="uid://elfqj4ni4jxs" path="res://assets/environment/back.png" id="2_8kvgk"]
+[ext_resource type="TileSet" uid="uid://dn505hopwb4de" path="res://assets/tilesets/tiles_items.tres" id="2_exesn"]
+[ext_resource type="TileSet" uid="uid://blhd0ogpuydej" path="res://assets/tilesets/tiles_spikes.tres" id="3_8kvgk"]
+[ext_resource type="Texture2D" uid="uid://c74m2qnljojh0" path="res://assets/environment/middle.png" id="3_ycc68"]
+[ext_resource type="PackedScene" uid="uid://bqmcg83s02mvu" path="res://Player/player.tscn" id="4_ycc68"]
+[ext_resource type="PackedScene" uid="uid://cjm6c45pjsa3b" path="res://UI/hud.tscn" id="8_p71ty"]
+[ext_resource type="AudioStream" uid="uid://0k12smxu6w0h" path="res://assets/audio/Grasslands Theme.ogg" id="9_7n0l5"]
+[ext_resource type="AudioStream" uid="uid://0wq33pdf1sh1" path="res://assets/audio/pickup2.ogg" id="10_5x0yr"]
+
+[node name="LevelBase" type="Node2D" unique_id=1363362779]
+script = ExtResource("1_exesn")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=790644881]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground" unique_id=814929953]
+motion_scale = Vector2(0.2, 1)
+motion_mirroring = Vector2(576, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer" unique_id=1129889796]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_8kvgk")
+centered = false
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground" unique_id=479469178]
+motion_scale = Vector2(0.6, 1)
+motion_mirroring = Vector2(880, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2" unique_id=554831587]
+texture_repeat = 2
+position = Vector2(602, 352)
+texture = ExtResource("3_ycc68")
+region_enabled = true
+region_rect = Rect2(0, 0, 880, 368)
+
+[node name="World" type="TileMap" parent="." unique_id=19002721]
+tile_set = ExtResource("1_o7a6f")
+format = 2
+
+[node name="Items" type="TileMap" parent="." unique_id=287394821]
+tile_set = ExtResource("2_exesn")
+format = 2
+
+[node name="Danger" type="TileMap" parent="." unique_id=408565295 groups=["danger"]]
+tile_set = ExtResource("3_8kvgk")
+format = 2
+
+[node name="Player" parent="." unique_id=1376653944 instance=ExtResource("4_ycc68")]
+
+[node name="SpawnPoint" type="Marker2D" parent="." unique_id=67505097]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=193798462]
+
+[node name="HUD" parent="CanvasLayer" unique_id=1249815538 instance=ExtResource("8_p71ty")]
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=765829823]
+stream = ExtResource("9_7n0l5")
+
+[node name="ItemSound" type="AudioStreamPlayer" parent="." unique_id=1921571763]
+stream = ExtResource("10_5x0yr")
+volume_db = -8.0
+
+[connection signal="score_changed" from="." to="CanvasLayer/HUD" method="update_score"]
+[connection signal="died" from="Player" to="." method="_on_player_died"]
+[connection signal="life_changed" from="Player" to="CanvasLayer/HUD" method="update_life"]

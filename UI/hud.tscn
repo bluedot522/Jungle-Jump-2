@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://cjm6c45pjsa3b"]
+
+[ext_resource type="Script" uid="uid://cu6b0rlqesf4f" path="res://UI/hud.gd" id="1_2o5uh"]
+[ext_resource type="FontFile" uid="uid://buosaulgdl55e" path="res://assets/Kenney Thick.ttf" id="1_bytes"]
+[ext_resource type="Texture2D" uid="uid://tgmnul8ympk7" path="res://assets/heart.png" id="2_2o5uh"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_levl0"]
+font = ExtResource("1_bytes")
+font_size = 48
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
+
+[node name="HUD" type="MarginContainer" unique_id=1249815538]
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 20
+script = ExtResource("1_2o5uh")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=672334337]
+layout_mode = 2
+
+[node name="Score" type="Label" parent="HBoxContainer" unique_id=229255602]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "100"
+label_settings = SubResource("LabelSettings_levl0")
+
+[node name="LifeCounter" type="HBoxContainer" parent="HBoxContainer" unique_id=1245190294]
+layout_mode = 2
+
+[node name="L1" type="TextureRect" parent="HBoxContainer/LifeCounter" unique_id=508401915]
+layout_mode = 2
+texture = ExtResource("2_2o5uh")
+stretch_mode = 5
+
+[node name="L2" type="TextureRect" parent="HBoxContainer/LifeCounter" unique_id=71752147]
+layout_mode = 2
+texture = ExtResource("2_2o5uh")
+stretch_mode = 5
+
+[node name="L3" type="TextureRect" parent="HBoxContainer/LifeCounter" unique_id=1272223042]
+layout_mode = 2
+texture = ExtResource("2_2o5uh")
+stretch_mode = 5
+
+[node name="L4" type="TextureRect" parent="HBoxContainer/LifeCounter" unique_id=584675577]
+layout_mode = 2
+texture = ExtResource("2_2o5uh")
+stretch_mode = 5
+
+[node name="L5" type="TextureRect" parent="HBoxContainer/LifeCounter" unique_id=2009185859]
+layout_mode = 2
+texture = ExtResource("2_2o5uh")
+stretch_mode = 5

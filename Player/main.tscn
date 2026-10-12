@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dvvuvmdh82wbb"]
+
+[sub_resource type="GDScript" id="GDScript_efp05"]
+script/source = "extends Node
+func _ready():
+	var level_num = str(GameState.current_level).pad_zeros(2)
+	var path = \"res://levels/level_%s.tscn\" % level_num
+	var level = load(path).instantiate()
+	add_child(level)
+"
+
+[node name="Main" type="Node" unique_id=1130273934]
+script = SubResource("GDScript_efp05")
